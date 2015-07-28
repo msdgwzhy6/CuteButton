@@ -33,31 +33,7 @@
     [self.view addSubview:_cuteButton];
     
     
-    //UIBezierPath * path = [UIBezierPath bezierPathWithArcCenter:CGPointMake(240, 160) radius:100 startAngle:(0/180.0)*M_PI endAngle:((0-1)/(180.0))*M_PI clockwise:YES];
-    
-    CGFloat x = CGRectGetMaxX(_cuteButton.frame);
-    CGFloat y = CGRectGetMaxY(_cuteButton.frame);
-    
-    //新建直线路径
-    CGMutablePathRef path1 = CGPathCreateMutable();
-    CGPathMoveToPoint(path1, NULL, 0, 0);
-    CGPathAddLineToPoint(path1, NULL, x, y);
-    CGPathMoveToPoint(path1, NULL, x, y);
-    CGPathAddLineToPoint(path1, NULL, 0.9 * x, 0.9 * y);
-    CGPathMoveToPoint(path1, NULL, 0.9 * x, 0.9 * y);
-    CGPathAddLineToPoint(path1, NULL, x, y);
-    CGPathMoveToPoint(path1, NULL, x, y);
-    UIBezierPath * path = [UIBezierPath bezierPathWithCGPath:path1];
-    
-    
-    //动画效果
-    CAKeyframeAnimation *orbit = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-    orbit.path = path.CGPath;
-    orbit.calculationMode = kCAAnimationCubic;
-    orbit.duration = 0.8;
-    orbit.repeatCount = 1;
-    
-    [_cuteButton.layer addAnimation:orbit forKey:@"orbit"];
+
     
     
     CGPoint center = self.view.center;
@@ -75,7 +51,7 @@
     isChange = false;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(touch:)];
-    [self.view addGestureRecognizer:tap];
+    //[self.view addGestureRecognizer:tap];
 }
 - (void)touch:(UITapGestureRecognizer *)tap {
     if ([_cuteButton.layer.presentationLayer hitTest:[tap locationInView:self.view]]) {
